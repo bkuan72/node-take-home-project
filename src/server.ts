@@ -6,7 +6,7 @@ import validateEnv from './utils/validateEnv';
 import App from './app';
 import appDB from './modules/DB.module'
 import AppGraphQL from './services/GraphQL/GraphQL.service';
-import { OrganisationsController } from './server/controllers/organization/organisations.controller';
+import { OrganizationsController } from './server/controllers/organization/organizations.controller';
 
 // validate that all required environment variable is present
 SysEnv.init();
@@ -24,7 +24,7 @@ appGraphQL.listen();
 const port = SysEnv.APP_PORT;
 const app = new App (
   [
-    new OrganisationsController(),
+    new OrganizationsController(),
 
   ],
   port
