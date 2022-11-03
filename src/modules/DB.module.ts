@@ -1,7 +1,8 @@
 import AWS from 'aws-sdk';
 import dynamoServiceConfigOptions from './AWS.Module';
 import { ISchema } from '../interfaces/ISchema';
-import { ApplicationFeatureSchema, ApplicationSchema } from '../server/controllers/organization/dto.schema';
+import { ApplicationFeatureSchema } from "../server/controllers/organization/schema/ApplicationFeatureSchema";
+import { ApplicationSchema } from "../server/controllers/organization/schema/ApplicationSchema";
 
 const TABLE_DEFINITIONS: ISchema[] = [
   ApplicationSchema,

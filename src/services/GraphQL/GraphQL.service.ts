@@ -1,7 +1,7 @@
+import { GraphQLGUID } from 'graphql-scalar';
 import { ApolloServer } from '@apollo/server';
-import GraphQLGUID from 'graphql-scalar';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import SysEnv  from '../modules/SysEnv'
+import SysEnv  from '../../modules/SysEnv'
 
 const typeDefs = `
 scalar GUID
