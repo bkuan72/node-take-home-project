@@ -5,6 +5,7 @@ import toobusy_js = require('toobusy-js');
 import ServerTooBusyException from './exceptions/ServerTooBusyException';
 // import rateLimit = require('express-rate-limit');
 import SysEnv from './modules/SysEnv';
+import cors = require('cors');
 
 
 
@@ -37,23 +38,18 @@ class App {
     next();
   }
 
-  // limiter = rateLimit({
-  //   windowMs: 15 * 60 * 1000, // 15 minutes
-  //   max: 1000 // limit each IP to 1000 requests per windowMs
-  // });
-
-
   private initializeMiddlewares() {
-    this.app.use(express.urlencoded({ limit: "5mb", extended: true }));
-    this.app.use(express.json({ limit: "10mb" }));
-    // this.app.use(express.multipart({ limit:"10mb" }));
-    // this.app.use(express.limit("5kb")); // this will be valid for every other content type
+    const corsOptions = {
+      origin: [SysEnv.VALID_CORS_ORIGIN],
+      optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    };
+    this.app.use(cors(corsOptions));
+    this.app.use(express.urlencoded({ limit: SysEnv.MAX_URLENCODE_SIZE, extended: true ,  parameterLimit:50000 }));
+    this.app.use(express.json({ limit: SysEnv.MAX_JSON_SIZE }));
+
     this.app.use(this.loggerMiddleware);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    // this.app.use(cookieParser());
-    //  apply to all requests
-    // this.app.use(this.limiter);
 
     this.app.use(function(_req, _res, next) {
       if (toobusy_js()) {

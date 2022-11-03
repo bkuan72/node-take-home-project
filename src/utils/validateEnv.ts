@@ -5,23 +5,14 @@ import {
 
   function validateEnv() {
     cleanEnv(process.env, {
-        DB_HOST: str(),
-        DB_USER: str(),
-        DB_PASSWORD: str(),
-        DB_NAME: str(),
-        DB_PORT: num(),
-        PORT: port(),
-        JWT_SECRET: str(),
-        SITE_CODE: str(),
-        DB_BCRYPT_SALT: num(),
         NODE_ENV: str(),
-        CAMEL_CASE_DTO: str(),
-
-        ROUTER_SERVICE: str(),
-        ROUTER_SERVICE_PORT: str(),
-        PROXY_TARGET: str(),
-        PROPERTY_SERVICE: str(),
-        PROPERTY_SERVICE_PORT: str(),
+        MAX_URLENCODE_SIZE: str(),
+        MAX_JSON_SIZE: str(),
+        VALID_CORS_ORIGIN: str(),
+        GRAPHQL_PORT: port(),
+        APP_PORT: port(),
+        TOOBUSY_MAX_LAG: num(),
+        TOOBUSY_CHECK_INTERVAL: num()
     });
   }
 
